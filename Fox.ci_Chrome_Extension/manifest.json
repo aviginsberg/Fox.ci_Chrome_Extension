@@ -1,6 +1,6 @@
 {
   "name": "Fox.ci",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Fox.ci URL Shortener",
   "homepage_url": "http://fox.ci",
@@ -13,7 +13,7 @@
 
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "browser action demo",
+    "default_title": "Fox.ci URL Shortener",
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
