@@ -46,9 +46,9 @@ function shortenTabURL(tabid){ // Use just a tab id to shorten its url
 
 function shortenURL(url){ // Creates a short url and copies it to clipboard
 	if(testURL(url)){
-		//var url = encodeURIComponent(url);
+		var url = encodeURIComponent(url);
 		sendAPIRequest("?url=" + url, function(req){
-			var res = JSON.parse(req);
+			var res = JSON.parse(req.response);
 			var status = res.statuscode;
 			var linkID = res.shortcode;
 
@@ -64,7 +64,7 @@ function shortenURL(url){ // Creates a short url and copies it to clipboard
 				case "201": // No URI provided - /Should/ never show up here
 					showAlert("It appears that you didn't submit a link to fox.ci.\nTry again?");
 					break;
-				case "202": // Attempted to shorten unsupported URI - As of 3/13/2015 http(s) only
+				case "202": // Attempted to shorten unsupported URI - As of 3/13/2015 http(s) only - /Should/ never show up thanks to testURL
 					showAlert("You tried to shorten an unsupported URL.\nhttp and https links only please.");
 					break;
 				case "203": // URL failed to resolve - Host could be down, or formatting problem
@@ -76,10 +76,13 @@ function shortenURL(url){ // Creates a short url and copies it to clipboard
 					break;
 			}
 		});
+	}else{
+		showAlert("Oh noes!\nYour link failed the client-side validation check D:");
 	}
 }
 
 function sendAPIRequest(url, callback){ // Sends a GET request to the server
+	var method = "GET";
 	var req = new XMLHttpRequest();
 	req.open(method, "http://fox.ci/api/" + url, true);
 	req.onload = function(){
