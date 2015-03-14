@@ -14,8 +14,8 @@
   },
   "permissions": [
     "<all_urls>",
-    "clipboardWrite",
     "tabs",
+    "clipboardWrite",
     "contextMenus",
     "notifications"
   ],
