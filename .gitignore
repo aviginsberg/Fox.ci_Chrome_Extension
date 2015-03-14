@@ -1,2 +1,6 @@
 # Don't upload IDE files
 **/.idea/**
+
+# I personally won't maintain the Website or Builds
+**/Website/**
+**/Builds/**
